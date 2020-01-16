@@ -34,7 +34,7 @@ public class GraphController {
     @GetMapping("/getRandom")
     public String getMethodRandom(){
         int min = 0;
-        int max = 500;
+        int max = Integer.MAX_VALUE;
         Random randomNumberOne = new Random( );
         Random randomNumberTwo = new Random( );
         ArrayList<Double> numberListOne = new ArrayList<>(  );
@@ -45,7 +45,7 @@ public class GraphController {
             numberOne = randomNumberOne.nextInt((max-min)+ 1);
             numberTwo = randomNumberTwo.nextInt((max-min)+ 1);
             if (numberOne == numberTwo){
-                return "Data matched " + "Attempt: " + (numberListOne.size() + 1);
+                return "Data matched."+ "\n" + "Attempt: " + (numberListOne.size() + 1) + "\n" + "Numbers: " + numberOne;
             }
             numberListOne.add( numberOne );
             numberListTwo.add( numberTwo );
