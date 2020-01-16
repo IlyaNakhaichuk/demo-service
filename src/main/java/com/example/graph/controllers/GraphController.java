@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Random;
 
 @RestController
 public class GraphController {
@@ -27,5 +29,24 @@ public class GraphController {
     @GetMapping("/get")
     public String getMethod() {
         return "Tehtelka, Privet";
+    }
+
+    @GetMapping("/getRandom")
+    public String getMethodRandom(){
+        Random randomNumberOne = new Random( );
+        Random randomNumberTwo = new Random( );
+        ArrayList<Double> numberListOne = new ArrayList<>(  );
+        ArrayList<Double> numberListTwo = new ArrayList<>(  );
+        double numberOne;
+        double numberTwo;
+        while (true){
+            numberOne = randomNumberOne.nextDouble();
+            numberTwo = randomNumberTwo.nextDouble();
+            if (numberOne == numberTwo){
+                return "Data matched " + "Attempt: " + (numberListOne.size() + 1);
+            }
+            numberListOne.add( numberOne );
+            numberListTwo.add( numberTwo );
+        }
     }
 }
