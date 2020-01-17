@@ -1,0 +1,36 @@
+name: CI-CD-Pipeline-to-DockeHub
+env:
+  APPLICATION_NAME: "load-service"
+  DEPLOY_REPOSITORY_NAME: "ilyanakhaichuk"
+
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy-to-hub:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Git clone our repo 
+      uses: actions/checkout@v1
+    
+    - name: Preparing source for sidebar
+      run: |
+        mkdir load-service
+        cp $(ls | grep -v 'load-service\|Dockerfile') load-service/
+        ls -la
+        ls -la load-service
+        
+    - name: Build Docker container
+      run: docker build -t ${{ env.DEPLOY_REPOSITORY_NAME }}/${{ env.APPLICATION_NAME }}:1.1 .
+    
+    - name: Docker login
+      run: docker login -u ${{secrets.DOCKER_LOGIN}} -p ${{secrets.DOCKER_PASSWORD}}
+    
+    - name: Push docker image to DockerHub
+      run: docker push ${{ env.DEPLOY_REPOSITORY_NAME }}/${{ env.APPLICATION_NAME }}:1.1
+      
+    - name: Run a last script
+      run: echo Job fineshed!
