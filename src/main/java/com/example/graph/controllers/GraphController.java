@@ -34,7 +34,7 @@ public class GraphController {
     @GetMapping("/getRandom")
     public String getMethodRandom(){
         int min = 0;
-        int max = 32000;
+        int max = 64000;
         Random randomNumberOne = new Random( );
         Random randomNumberTwo = new Random( );
         ArrayList<Double> numberListOne = new ArrayList<>(  );
