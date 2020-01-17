@@ -19,7 +19,7 @@ jobs:
     - name: Preparing source for sidebar
       run: |
         mkdir load-service
-        cp $(ls | grep -v 'load-service\|Dockerfile') load-service/
+        cp -r $(ls | grep -v 'load-service\|Dockerfile') load-service/
         ls -la
         ls -la load-service
         
