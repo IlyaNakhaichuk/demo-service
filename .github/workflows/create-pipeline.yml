@@ -20,6 +20,8 @@ jobs:
       run: |
         mkdir load-service
         cp -r $(ls | grep -v 'load-service\|Dockerfile') load-service/
+        cd load-service/
+        mvn test clean
 
     - name: Build Docker container
       run: docker build -t ${{ env.DEPLOY_REPOSITORY_NAME }}/${{ env.APPLICATION_NAME }}:1.1 .
