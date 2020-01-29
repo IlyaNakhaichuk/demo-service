@@ -28,7 +28,7 @@ public class GraphController {
 
     @GetMapping("/get")
     public String getMethod() {
-        return "Hello ot Anostosii!";
+        return "Privet teftelka!";
     }
 
     @GetMapping("/getRandom")
